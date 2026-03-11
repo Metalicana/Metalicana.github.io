@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aero-World Demo Gallery</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #121821;
+      --panel-2: #18222e;
+      --text: #e8eef6;
+      --muted: #aab7c6;
+      --border: #273445;
+      --accent: #7cc4ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .page-header, .main-section, .case {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .page-header {
+      margin-bottom: 32px;
+      padding: 24px;
+    }
+
+    .page-header h1 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+    }
+
+    .page-header p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .main-section {
+      margin-top: 36px;
+      margin-bottom: 20px;
+      padding: 18px 20px;
+    }
+
+    .main-section h2 {
+      margin: 0 0 6px;
+      font-size: 1.45rem;
+    }
+
+    .main-section p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .case {
+      margin-top: 18px;
+      margin-bottom: 24px;
+      padding: 22px;
+      border-radius: 18px;
+    }
+
+    .case-title {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    .case-name {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .case-note {
+      margin: 0 0 16px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .grid-ood {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .grid-id {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .video-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .video-card h3 {
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 10px;
+      background: #000;
+      display: block;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      border: 1px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      padding: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    @media (max-width: 1400px) {
+      .grid-id {
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .grid-ood, .grid-id {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Aero-World Demo Gallery</h1>
+      <p>
+        Out-of-distribution examples use synthetic motion prompts and 3-way comparisons.
+        In-distribution examples use 4-way comparisons in a separate section below.
+      </p>
+    </div>
+
+    <!-- ========================= -->
+    <!-- OUT-OF-DISTRIBUTION TEST -->
+    <!-- ========================= -->
+    <div class="main-section">
+      <h2>Out-of-Distribution Test</h2>
+      <p>
+        These examples correspond to synthetic motion specifications and are shown without ground-truth videos.
+      </p>
+    </div>
+
+    <section class="case">
+      <h2 class="case-title">A drone view where the drone flies forward rapidly while banking left, photorealistic, 4k.</h2>
+      <p class="case-name">IMU: forward_bank_left</p>
+      <p class="case-note">Forward surge with sustained left roll.</p>
+      <div class="grid-ood">
+        <div class="video-card"><h3>DiT Backbone</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/baseline/beach_forward_bank_left_vanilla.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/beach_forward_bank_left_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/beach_forward_bank_left_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case">
+      <h2 class="case-title">A drone view where the drone flies forward rapidly while banking right, photorealistic, 4k.</h2>
+      <p class="case-name">IMU: forward_bank_right</p>
+      <p class="case-note">Forward surge with sustained right roll.</p>
+      <div class="grid-ood">
+        <div class="video-card"><h3>DiT Backbone</h3>
+        <div class="placeholder">
+            <video controls autoplay loop muted playsinline>
+                <source src="videos/baseline/road3_pitch-up_ls0.6_ps3.0.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/road3_forward_bank_right_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/road3_forward_bank_right_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="case">
+      <h2 class="case-title">A drone view where the drone pitches upward and then pitches downward, photorealistic, 4k.</h2>
+      <p class="case-name">IMU: pitch_up_then_down</p>
+      <p class="case-note">Negative wy first, then positive wy.</p>
+      <div class="grid-ood">
+        <div class="video-card"><h3>DiT Backbone</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/baseline/road1_pitch_up_then_down_vanilla.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/road1_pitch_up_then_down_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            
+            </div>
+            
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/road1_pitch_up_then_down_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case">
+      <h2 class="case-title">A drone view where the drone flies forward and turns left smoothly, photorealistic, 4k.</h2>
+      <p class="case-name">IMU: forward_left_turn</p>
+      <p class="case-note">Forward motion with left yaw and slight coordinated left roll.</p>
+      <div class="grid-ood">
+        <div class="video-card"><h3>DiT Backbone</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/baseline/parking4_forward_bank_left_vanilla.mp4" type="video/mp4">
+                </video>
+            </div>
+        
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/parking4_forward_left_turn_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/parking4_forward_bank_left_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case">
+      <h2 class="case-title">A drone view where the drone flies forward and turns right smoothly, photorealistic, 4k.</h2>
+      <p class="case-name">IMU: forward_right_turn</p>
+      <p class="case-note">Forward motion with right yaw and slight coordinated right roll.</p>
+      <div class="grid-ood">
+        <div class="video-card"><h3>DiT Backbone</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/baseline/forest_forward_bank_right_vanilla.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/forest_forward_right_turn_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/forest_forward_right_turn_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case">
+      <h2 class="case-title">A drone view where the drone flies forward while ascending, photorealistic, 4k.</h2>
+      <p class="case-name">IMU: ascend_forward</p>
+      <p class="case-note">Forward surge with upward motion.</p>
+      <div class="grid-ood">
+        <div class="video-card"><h3>DiT Backbone</h3>
+            <div class="placeholder">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/baseline/road6_pitch-up_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/road6_ascend_forward_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/road6_ascend_forward_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case">
+      <h2 class="case-title">A drone view where the drone flies forward while descending, photorealistic, 4k.</h2>
+      <p class="case-name">IMU: descend_forward</p>
+      <p class="case-note">Forward surge with downward motion.</p>
+      <div class="grid-ood">
+        <div class="video-card"><h3>DiT Backbone</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/baseline/forest2_descend_forward_vanilla.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/forest2_descend_forward_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/forest2_descend_forward_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case">
+      <h2 class="case-title">A drone view where the drone flies forward while swaying left and right in a slalom motion, photorealistic, 4k.</h2>
+      <p class="case-name">IMU: slalom_left_right</p>
+      <p class="case-note">Forward motion with lateral oscillation and matching roll.</p>
+      <div class="grid-ood">
+        <div class="video-card"><h3>DiT Backbone</h3>
+        <div class="video">
+            <video controls autoplay loop muted playsinline>
+                <source src="videos/baseline/nature2_slalom_left_right_vanilla.mp4" type="video/mp4">
+            </video>
+        </div>
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/nature2_slalom_left_right_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/nature2_slalom_left_right_ls0.6_ps3.0.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- IN-DISTRIBUTION TEST -->
+    <!-- ===================== -->
+    <div class="main-section">
+      <h2>Validation Test</h2>
+      <p>
+        These examples use 4-way comparisons. Ground truth videos are included for contrast. These are from our AeroBench validation set, which is held out from training but still in-distribution.
+      </p>
+    </div>
+
+    <section class="case">
+      <h2 class="case-title">Validation Example 1</h2>
+      <p class="case-name">A drone view where the drone flies forward normally and sways to the right mildly and moves downward rapidly and turns right gently, then the drone flies forward normally and sways to the right mildly and moves downward very rapidly and turns right gently, then the drone flies forward normally and sways to the right mildly and moves downward very rapidly, then the drone flies forward rapidly and sways to the right mildly and moves downward rapidly, then the drone flies forward rapidly and sways to the right mildly and moves upward rapidly, then the drone flies forward rapidly and sways to the right mildly and moves upward very rapidly, then the drone flies forward very rapidly and sways to the right mildly and moves upward very rapidly, then the drone flies forward very rapidly and moves upward very rapidly, photorealistic, 4k.</p>
+      <div class="grid-id">
+        <div class="video-card"><h3>Ground Truth / Reference</h3>
+        <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/gt/TII_flight-01p-ellipse_s00735.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>DiT Backbone</h3>
+<div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/baseline/TII_flight-01p-ellipse_s00735.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+<div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/np1.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/TII_flight-01p-ellipse_s00735.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case">
+      <h2 class="case-title">Validation Example 2</h2>
+      <p class="case-name">A drone view where the drone flies forward very rapidly and sways to the right very aggressively and moves upward very rapidly and turns right very aggressively, then the drone flies forward rapidly and sways to the right very aggressively and moves upward very rapidly and turns right very aggressively, then the drone flies forward rapidly and sways to the right very aggressively and moves upward slowly and turns right very aggressively, then the drone flies forward rapidly and sways to the right very aggressively and moves downward slowly and turns right very aggressively, then the drone flies forward normally and sways to the right very aggressively and moves downward rapidly and turns right very aggressively, then the drone sways to the right very aggressively and moves downward rapidly and turns right very aggressively, then the drone sways to the right very aggressively and moves downward slowly and turns right very aggressively, photorealistic, 4k.</p>
+      <div class="grid-id">
+        <div class="video-card"><h3>Ground Truth / Reference</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/gt/TII_flight-09p-lemniscate_s00900.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>DiT Backbone</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/baseline/TII_flight-09p-lemniscate_s00900.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/TII_flight-09p-lemniscate_s00900.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/TII_flight-09p-lemniscate_s00900.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case">
+      <h2 class="case-title">Validation Example 3</h2>
+      <p class="case-name">A drone view where the drone sways to the right mildly and moves downward rapidly, then the drone sways to the right mildly and moves upward slowly, then the drone sways to the right mildly and moves upward very rapidly, then the drone flies forward normally and sways to the right mildly and moves upward very rapidly, then the drone flies forward normally and moves upward slowly, then the drone flies forward normally and moves downward slowly, then the drone flies forward normally and moves downward rapidly, then the drone flies forward normally and moves downward slowly, then the drone flies forward normally and turns right gently, photorealistic, 4k.</p>
+      <div class="grid-id">
+        <div class="video-card"><h3>Ground Truth / Reference</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/gt/TII_flight-01p-ellipse_s05280.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>DiT Backbone</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/baseline/TII_flight-01p-ellipse_s05280.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/TII_flight-01p-ellipse_s05280.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/TII_flight-01p-ellipse_s05280.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case">
+      <h2 class="case-title">Validation Example 4</h2>
+      <p class="case-name">A drone view where the drone flies forward rapidly and sways to the left mildly and moves downward very rapidly and turns right gently, then the drone flies forward rapidly and moves downward very rapidly and turns right gently, then the drone flies forward rapidly and moves downward very rapidly, then the drone flies forward very rapidly and moves downward very rapidly, then the drone flies forward very rapidly and moves downward rapidly, then the drone flies forward very rapidly and moves downward slowly, then the drone flies forward very rapidly and moves upward slowly, then the drone flies forward very rapidly and moves upward rapidly, then the drone flies forward very rapidly and moves upward very rapidly, photorealistic, 4k.</p>
+      <div class="grid-id">
+        <div class="video-card"><h3>Ground Truth / Reference</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/gt/TII_flight-01p-ellipse_s06825.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>DiT Backbone</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/baseline/TII_flight-01p-ellipse_s06825.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours_no_physics/TII_flight-01p-ellipse_s06825.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="video-card"><h3> Aero-World (Ours)</h3>
+            <div class="video">
+                <video controls autoplay loop muted playsinline>
+                    <source src="videos/ours/TII_flight-01p-ellipse_s06825.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
