@@ -184,14 +184,14 @@
         <div class="video-card"><h3>DiT Backbone</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/baseline/beach_forward_bank_left_vanilla.mp4" type="video/mp4">
+                    <source src="videos/baseline/beach_forward_bank_left.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours_no_physics/beach_forward_bank_left_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours_no_physics/beach_forward_bank_left.mp4" type="video/mp4">
                 </video>
             </div>
             
@@ -199,11 +199,12 @@
         <div class="video-card"><h3> Aero-World (Ours)</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours/beach_forward_bank_left_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours/beach_forward_bank_left.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
       </div>
+      <h4>In this example, the commanded motion requires a strong forward trajectory together with an aggressive left bank. The model trained without physics supervision moves roughly forward, but fails to maintain the intended banking behavior and introduces visible artifacts as the turn develops. In contrast, Aero-World better preserves scene structure while more faithfully executing the commanded leftward banking motion.</h4>
     </section>
 
     <section class="case">
@@ -214,7 +215,7 @@
         <div class="video-card"><h3>DiT Backbone</h3>
         <div class="placeholder">
             <video controls autoplay loop muted playsinline>
-                <source src="videos/baseline/road3_pitch-up_ls0.6_ps3.0.mp4" type="video/mp4">
+                <source src="videos/baseline/road3_forward_bank_right.mp4" type="video/mp4">
             </video>
         </div>
         
@@ -222,18 +223,19 @@
         <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours_no_physics/road3_forward_bank_right_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours_no_physics/road3_forward_bank_right.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3> Aero-World (Ours)</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours/road3_forward_bank_right_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours/road3_forward_bank_right.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
       </div>
+      <h4>Here, the desired trajectory corresponds to fast forward motion with a sustained right bank. Without physics supervision, the model begins to bank in the correct direction but quickly distorts the environment, indicating weak motion consistency under control. Aero-World follows the commanded right-banking trajectory more faithfully while preserving the geometry of the scene.</h4>
     </section>
 
 
@@ -245,14 +247,14 @@
         <div class="video-card"><h3>DiT Backbone</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/baseline/road1_pitch_up_then_down_vanilla.mp4" type="video/mp4">
+                    <source src="videos/baseline/road1_pitch_up_then_down.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours_no_physics/road1_pitch_up_then_down_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours_no_physics/road1_pitch_up_then_down.mp4" type="video/mp4">
                 </video>
             
             </div>
@@ -261,11 +263,12 @@
         <div class="video-card"><h3> Aero-World (Ours)</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours/road1_pitch_up_then_down_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours/road1_pitch_up_then_down.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
       </div>
+      <h4>This example requires a temporally structured maneuver: the drone should first pitch upward and then pitch downward. The model without physics supervision mostly continues drifting forward and only weakly reflects the upward pitch command. Aero-World captures the initial upward motion much more clearly, showing improved response to the commanded trajectory, although both models still struggle to fully realize the subsequent downward phase of the maneuver.</h4>
     </section>
 
     <section class="case">
@@ -276,7 +279,7 @@
         <div class="video-card"><h3>DiT Backbone</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/baseline/parking4_forward_bank_left_vanilla.mp4" type="video/mp4">
+                    <source src="videos/baseline/parking4_forward_bank_left.mp4" type="video/mp4">
                 </video>
             </div>
         
@@ -284,18 +287,19 @@
         <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours_no_physics/parking4_forward_left_turn_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours_no_physics/parking4_forward_bank_left.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3> Aero-World (Ours)</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours/parking4_forward_bank_left_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours/parking4_forward_bank_left.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
       </div>
+      <h4>The target motion in this case is a smooth forward left turn. The model without physics supervision fails to follow this command and instead begins rotating in the opposite direction, revealing poor alignment between the conditioning signal and the generated camera motion. Aero-World correctly executes the leftward turn and maintains a more coherent scene evolution throughout the maneuver.</h4>
     </section>
 
     <section class="case">
@@ -306,25 +310,26 @@
         <div class="video-card"><h3>DiT Backbone</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/baseline/forest_forward_bank_right_vanilla.mp4" type="video/mp4">
+                    <source src="videos/baseline/forest_forward_bank_right.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours_no_physics/forest_forward_right_turn_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours_no_physics/forest_forward_bank_right.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3> Aero-World (Ours)</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours/forest_forward_right_turn_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours/forest_forward_bank_right.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
       </div>
+      <h4>This sequence requires the drone to move forward while smoothly turning right. Without physics supervision, the model does not realize the intended rightward turn and instead produces noticeable scene morphing and unstable camera behavior. Aero-World follows the commanded right-turn trajectory much more reliably, yielding both better control alignment and more stable visual dynamics.</h4>
     </section>
 
     <section class="case">
@@ -335,25 +340,26 @@
         <div class="video-card"><h3>DiT Backbone</h3>
             <div class="placeholder">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/baseline/road6_pitch-up_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/baseline/road6_ascend_forward.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours_no_physics/road6_ascend_forward_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours_no_physics/road6_ascend_forward.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3> Aero-World (Ours)</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours/road6_ascend_forward_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours/road6_ascend_forward.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
       </div>
+      <h4>In this case, the motion command specifies simultaneous forward motion and upward ascent. The model without physics supervision largely fails to gain altitude and does not clearly reflect the ascending component of the trajectory. Aero-World responds much more directly to the control signal, producing a visibly upward flight path that better matches the commanded motion.</h4>
     </section>
 
     <section class="case">
@@ -364,25 +370,26 @@
         <div class="video-card"><h3>DiT Backbone</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/baseline/forest2_descend_forward_vanilla.mp4" type="video/mp4">
+                    <source src="videos/baseline/forest2_descend_forward.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours_no_physics/forest2_descend_forward_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours_no_physics/forest2_descend_forward.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3> Aero-World (Ours)</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours/forest2_descend_forward_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours/forest2_descend_forward.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
       </div>
+    <h4>This example requires the drone to move forward while descending. The model trained without physics supervision does not follow the intended downward trajectory and instead exhibits a drifting, swirling motion that deviates from the control input. Aero-World produces a much clearer descending path, demonstrating stronger adherence to the commanded motion.</h4>
     </section>
 
     <section class="case">
@@ -393,25 +400,26 @@
         <div class="video-card"><h3>DiT Backbone</h3>
         <div class="video">
             <video controls autoplay loop muted playsinline>
-                <source src="videos/baseline/nature2_slalom_left_right_vanilla.mp4" type="video/mp4">
+                <source src="videos/baseline/nature2_slalom_left_right.mp4" type="video/mp4">
             </video>
         </div>
         </div>
         <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours_no_physics/nature2_slalom_left_right_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours_no_physics/nature2_slalom_left_right.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
         <div class="video-card"><h3> Aero-World (Ours)</h3>
             <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours/nature2_slalom_left_right_ls0.6_ps3.0.mp4" type="video/mp4">
+                    <source src="videos/ours/nature2_slalom_left_right.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
       </div>
+      <h4>This slalom example is particularly challenging because it requires repeated fine-grained left-right lateral oscillations rather than a single coarse maneuver. Both the model without physics supervision and Aero-World struggle to fully capture the alternating side-to-side motion, suggesting that this type of rapidly varying control remains difficult. Nevertheless, Aero-World produces somewhat more structured motion, while the baseline responses remain less faithful to the intended slalom pattern.</h4>
     </section>
 
     <!-- ===================== -->
@@ -445,7 +453,7 @@
         <div class="video-card"><h3>Finetuning With No Physics Supervision</h3>
 <div class="video">
                 <video controls autoplay loop muted playsinline>
-                    <source src="videos/ours_no_physics/np1.mp4" type="video/mp4">
+                    <source src="videos/ours_no_physics/TII_flight-01p-ellipse_s00735.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
