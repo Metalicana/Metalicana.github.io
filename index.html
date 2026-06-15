@@ -3,33 +3,121 @@
   <head>
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.querySelector('.bal-container');
-    const handle = container.querySelector('.bal-handle');
-    const beforeDiv = container.querySelector('.bal-before');
-    let isDragging = false;
+    document.querySelectorAll('.bal-container').forEach(function(container) {
+        const handle = container.querySelector('.bal-handle');
+        if (!handle) return;
 
-    const move = (e) => {
-        if (!isDragging) return;
-        
-        const rect = container.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const percentage = (x / rect.width) * 100;
-        
-        const constrainedPercentage = Math.max(0, Math.min(100, percentage));
-        
-        beforeDiv.style.width = `${constrainedPercentage}%`;
-        handle.style.left = `${constrainedPercentage}%`;
-        
-    };
+        let activePointerId = null;
+        let sliderPosition = 50;
 
-    handle.addEventListener('mousedown', () => isDragging = true);
-    document.addEventListener('mousemove', move);
-    document.addEventListener('mouseup', () => isDragging = false);
-    container.addEventListener('mouseleave', () => isDragging = false);
-    
-    // Initial position
-    beforeDiv.style.width = '50%';
-    handle.style.left = '50%';
+        const setSliderPosition = function(percentage) {
+            sliderPosition = Math.max(0, Math.min(100, percentage));
+            const position = `${sliderPosition}%`;
+
+            container.style.setProperty('--slider-position', position);
+            handle.style.left = position;
+            handle.setAttribute('aria-valuenow', Math.round(sliderPosition));
+            handle.setAttribute('aria-valuetext', `${Math.round(sliderPosition)}% blurry image visible`);
+        };
+
+        const setSliderPositionFromPointer = function(event) {
+            const rect = container.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            setSliderPosition((x / rect.width) * 100);
+        };
+
+        const startDrag = function(event) {
+            if (event.button !== undefined && event.button !== 0) return;
+
+            activePointerId = event.pointerId;
+            container.setPointerCapture(activePointerId);
+            container.classList.add('is-dragging');
+            setSliderPositionFromPointer(event);
+            event.preventDefault();
+        };
+
+        const drag = function(event) {
+            if (event.pointerId !== activePointerId) return;
+            setSliderPositionFromPointer(event);
+        };
+
+        const stopDrag = function(event) {
+            if (event.pointerId !== activePointerId) return;
+
+            if (container.hasPointerCapture(activePointerId)) {
+                container.releasePointerCapture(activePointerId);
+            }
+            activePointerId = null;
+            container.classList.remove('is-dragging');
+        };
+
+        handle.setAttribute('role', 'slider');
+        handle.setAttribute('aria-label', 'Compare blurry and sharp image');
+        handle.setAttribute('aria-valuemin', '0');
+        handle.setAttribute('aria-valuemax', '100');
+        handle.tabIndex = 0;
+
+        container.addEventListener('pointerdown', startDrag);
+        container.addEventListener('pointermove', drag);
+        container.addEventListener('pointerup', stopDrag);
+        container.addEventListener('pointercancel', stopDrag);
+        handle.addEventListener('keydown', function(event) {
+            const step = event.shiftKey ? 10 : 5;
+
+            if (event.key === 'ArrowLeft') {
+                setSliderPosition(sliderPosition - step);
+            } else if (event.key === 'ArrowRight') {
+                setSliderPosition(sliderPosition + step);
+            } else if (event.key === 'Home') {
+                setSliderPosition(0);
+            } else if (event.key === 'End') {
+                setSliderPosition(100);
+            } else {
+                return;
+            }
+
+            event.preventDefault();
+        });
+
+        setSliderPosition(sliderPosition);
+    });
+
+    const githubStarCount = document.querySelectorAll('.github-star-count');
+    if (githubStarCount.length) {
+        const setGitHubStarText = function(text) {
+            githubStarCount.forEach(function(element) {
+                element.textContent = text;
+            });
+        };
+
+        const formatStars = function(count) {
+            return `${count.toLocaleString()} ${count === 1 ? 'star' : 'stars'}`;
+        };
+
+        const loadGitHubStars = async function() {
+            let page = 1;
+            let totalStars = 0;
+
+            while (page <= 10) {
+                const response = await fetch(`https://api.github.com/users/Metalicana/repos?per_page=100&type=owner&page=${page}`);
+                if (!response.ok) throw new Error('GitHub stars unavailable');
+
+                const repos = await response.json();
+                totalStars += repos.reduce(function(sum, repo) {
+                    return sum + repo.stargazers_count;
+                }, 0);
+
+                if (repos.length < 100) break;
+                page += 1;
+            }
+
+            setGitHubStarText(formatStars(totalStars));
+        };
+
+        loadGitHubStars().catch(function() {
+            setGitHubStarText('stars');
+        });
+    }
 });
 </script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -54,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   Abdul Mohaimen Al Radi
                 </p>
                 <p>
-                  I'm a PhD student</b> at the <a href="https://www.ucf.edu/">University of Central Florida</a>, where I work under <a href="https://yutianyt.com/">Dr. Yu Tian</a> and <a href="https://graduate.ucf.edu/profile/mubarak-shah">Dr. Mubarak Shah</a> on problems in <b>computer vision</b>, particularly <b>image restoration</b>, <b>Long Video Generation</b>, and <b>LLM agents in medicine</b>. Previously, I was a <b>research assistant</b> at the <a href="https://cognistorm.ai/">Cognitive Agents and Interaction Lab</a> at the <a href="https://www.du.ac.bd/">University of Dhaka</a>, where I worked on projects including <b>image deblurring</b>, <b>generative models</b>, <b>3D reconstruction</b>, and <b>segmentation</b>.
+                  <b>I'm a PhD student</b> at the <a href="https://www.ucf.edu/">University of Central Florida</a>, where I work under <a href="https://yutianyt.com/">Dr. Yu Tian</a> and <a href="https://graduate.ucf.edu/profile/mubarak-shah">Dr. Mubarak Shah</a> on problems in <b>computer vision</b>, particularly <b>image restoration</b>, <b>Long Video Generation</b>, and <b>LLM agents in medicine</b>. Previously, I was a <b>research assistant</b> at the <a href="https://cognistorm.ai/">Cognitive Agents and Interaction Lab</a> at the <a href="https://www.du.ac.bd/">University of Dhaka</a>, where I worked on projects including <b>image deblurring</b>, <b>generative models</b>, <b>3D reconstruction</b>, and <b>segmentation</b>.
                 </p>
                 <p>
                   My long-term research goal is to democratize AI—advancing the field of computer vision, pushing toward AGI, and enabling meaningful applications in healthcare. Through my PhD, I aim to develop deep research expertise, mentor upcoming researchers, and eventually establish a lab that reflects my research values and vision.
@@ -66,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <a href="https://scholar.google.com/citations?user=b5AGExwAAAAJ&hl=en">Scholar</a> &nbsp;/&nbsp;
                   <a href="https://x.com/ama_radi">Twitter</a> &nbsp;/&nbsp;
                   <a href="https://github.com/Metalicana">Github</a>
+                  <span class="github-stat">(<span class="github-star-count">stars</span>)</span>
                 </p>
               </td>
               <td style="padding:2.5%;width:37%;max-width:37%">
@@ -96,8 +185,23 @@ document.addEventListener('DOMContentLoaded', function() {
           <table>
             <tbody>         
             <tr>
-              <td>
-						     
+              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
+                <div class="colored-box">
+                  <img src="data/ucf.png" alt="University of Central Florida" style="width:100%">
+                </div>
+              </td>
+              <td style="padding:16px">
+                <a href="https://www.ucf.edu/" style="font-size:25px">University of Central Florida</a><br>
+                <p style="font-size:15px">PhD student in Computer Science</p>
+                <p><b>Fall 2025 - Present</b></p>
+              </td>
+            </tr>
+
+            <tr>
+              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
+                <div class="colored-box">
+                  <img src="images/dulogo.png" alt="University of Dhaka" style="width:100%">
+                </div>
               </td>
               <td style="padding:16px">
                 <a href="https://www.du.ac.bd/" style="font-size:25px">University of Dhaka</a><br>
@@ -115,7 +219,74 @@ document.addEventListener('DOMContentLoaded', function() {
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tbody>
 
+          <tr bgcolor="#ffffd0">
+              <td style="padding:16px;width:30%;vertical-align:middle">
+              <div class="comparison-wrapper">
+                  <div class="sal-container">
+                      <div class="bal-before">
+                          <img src="images/aero_world.jpg" alt="Aero-World aerial video thumbnail">
+                      </div>
+                  </div>
+              </div>
+              </td>
+              <td style="padding:8px;width:70%;vertical-align:middle">
+                  <a href="https://arxiv.org/abs/2605.19728">
+                      <span class="papertitle">Aero-World: Action-Conditioned Aerial Video Generation from Inertial Controls</span>
+                  </a>
+                  <br>
+                  <strong>Abdul Mohaimen Al Radi</strong>,
+                  Kunyang Li,
+                  Yuzhang Shang,
+                  <a href="https://graduate.ucf.edu/profile/mubarak-shah">Mubarak Shah</a>,
+                  <a href="https://yutianyt.com/">Yu Tian</a>
+                  <br>
+                  <em>arXiv</em>, 2026
+                  <br>
+                  <a href="https://arxiv.org/abs/2605.19728">download</a>
+                  /
+                  <a href="paper_demo/">demo</a>
+                  <p></p>
+                  <p>
+                    We introduce Aero-World, a controllable aerial video generation method that adapts a pretrained image-to-video diffusion model to follow fine-grained inertial controls. The method injects translational acceleration and angular velocity as action tokens and uses a frozen latent-space physics probe for inertial-consistency supervision, improving motion alignment and visual quality on the AeroBench evaluation benchmark.
+                  </p>
+              </td>
+          </tr>
 
+          <br>
+          <tr>
+              <td style="padding:16px;width:30%;vertical-align:middle">
+              <div class="comparison-wrapper">
+                  <div class="sal-container">
+                      <div class="bal-before">
+                          <img src="images/crest.svg" alt="CREST long-video frame sampling thumbnail">
+                      </div>
+                  </div>
+              </div>
+              </td>
+              <td style="padding:8px;width:70%;vertical-align:middle">
+                  <a href="https://arxiv.org/abs/2605.09223">
+                      <span class="papertitle">CREST: Curvature-Regulated Event-Centric Sampling for Efficient Long-Video Understanding</span>
+                  </a>
+                  <br>
+                  Mehrajul Abadin Miraj,
+                  <strong>Abdul Mohaimen Al Radi</strong>,
+                  Shariful Islam Rayhan,
+                  Md. Tanvir Alam,
+                  Ismat Rahman,
+                  <a href="https://yutianyt.com/">Yu Tian</a>,
+                  <a href="https://mmkhansajeeb.com/">Md Mosaddek Khan</a>
+                  <br>
+                  <em>arXiv</em>, 2026
+                  <br>
+                  <a href="https://arxiv.org/abs/2605.09223">download</a>
+                  <p></p>
+                  <p>
+                    CREST is a training-free frame selection method for long-video understanding. It uses local curvature in query-frame relevance over time to allocate a fixed frame budget around salient events, improving efficiency while preserving most of the accuracy of stronger multi-stage retrieval pipelines.
+                  </p>
+              </td>
+          </tr>
+
+          <br>
           <tr onmouseout="r2r_stop()" onmouseover="r2r_start()" bgcolor="#ffffd0">
               <td style="padding:16px;width:30%;vertical-align:middle">
                   <div class="comparison-wrapper">
@@ -171,21 +342,21 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
               </td>
               <td style="padding:8px;width:70%;vertical-align:middle">
-                  <a href="">
-                      <span class="papertitle">Deblurring in the Wild: A Real-World Dataset from Smartphone High-Speed Videos</span>
+                  <a href="https://arxiv.org/abs/2506.19445">
+                      <span class="papertitle">Deblurring in the Wild: A Real-World Image Deblurring Dataset from Smartphone High-Speed Videos</span>
                   </a>
                   <br>
-                  <a href="">Mahdi Mohd Hossain Noki</a>,
-                  <a href=""> Syed Mumtahin Mahmud</a>,
+                  Syed Mumtahin Mahmud,
+                  Mahdi Mohd Hossain Noki,
                   <a href="https://prothitoshovon.github.io/"> Prothito Shovon Majumder</a>,
-                  <strong> Abdul Mohaimen Al Radi/<strong>,
-                  <a href=""> Sudipto Das Sukanto</a>,
-                  <a href=""> Afia Lubaina</a>,
+                  <strong> Abdul Mohaimen Al Radi</strong>,
+                  Sudipto Das Sukanto,
+                  Afia Lubaina,
                   <a href="https://mmkhansajeeb.com/">Md Mosaddek Khan</a>,
                   <br>
-                  <em>Under Review</em>
+                  <em>arXiv</em>, 2025
                   <br>
-                  <!-- <a href="https://www.researchsquare.com/article/rs-5306286/v1">download</a> -->
+                  <a href="https://arxiv.org/abs/2506.19445">download</a>
                   
                   <p>
                     We present the largest real-world image deblurring dataset, built from smartphone slow-motion videos. By averaging 240 fps frames to create blur and using the center frame as the sharp reference, we generate over 42,000 high-resolution blur-sharp pairs. This makes it roughly 10 times larger and 8 times more diverse than existing datasets. Covering a wide range of indoor and outdoor scenes with various object and camera motions, our benchmark reveals significant performance drops in state-of-the-art models, highlighting its complexity. The dataset and generation scripts are available on HuggingFace.
@@ -206,23 +377,25 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
               </td>
               <td style="padding:8px;width:70%;vertical-align:middle">
-                  <a href="https://github.com/Dip-to/Vision-Transformer-and-FFT-ReLU-Fusion-for-Advanced-Image-Deblurring">
-                      <span class="papertitle">Vision Transformer and FFT-ReLU Fusion for Advanced Image Deblurring</span>
+                  <a href="https://arxiv.org/abs/2511.10806">
+                      <span class="papertitle">From Attention to Frequency: Integration of Vision Transformer and FFT-ReLU for Enhanced Image Deblurring</span>
                   </a>
                   <br>
-                  <a href="">Syed Mumtahin Mahmud</a>
-                  <a href="">Mahdi Mohd Hossain Noki1</a>
+                  Syed Mumtahin Mahmud,
+                  Mahdi Mohd Hossain Noki,
                   <a href="https://prothitoshovon.github.io/">Prothito Shovon Majumder</a>,
-                  <strong>Abdul Mohaimen Al Radi/<strong>,
-                  <a href="">Md. Haider Ali</a>
-                  <a href="https://mmkhansajeeb.com/">Md Mosaddek Khan</a>,
+                  <strong>Abdul Mohaimen Al Radi</strong>,
+                  Md. Haider Ali,
+                  <a href="https://mmkhansajeeb.com/">Md Mosaddek Khan</a>
                   <br>
-                  <em>Under Review</em>
+                  <em>ICAART</em>, 2026
                   <br>
-                  <a href="https://www.researchsquare.com/article/rs-5306286/v1">download</a>
+                  <a href="https://arxiv.org/abs/2511.10806">download</a>
+                  /
+                  <a href="https://github.com/Dip-to/Vision-Transformer-and-FFT-ReLU-Fusion-for-Advanced-Image-Deblurring">code</a>
                   <p></p>
                   <p>
-                    We propose a novel approach to blind image deblurring that combines Vision Transformers with Fast Fourier Transform (FFT) and ReLU sparsity priors. Our method efficiently captures both local and global features while targeting blur-related frequencies, achieving competitive results with state-of-the-art methods at faster inference speeds. Through extensive experiments on benchmark datasets and human evaluations, we demonstrate that our technique produces high-quality results across diverse image types, making it well-suited for real-world applications.
+                    We propose a dual-domain image deblurring architecture that combines Vision Transformers with an FFT-ReLU frequency module. The ViT backbone captures local and global dependencies, while the FFT-ReLU component enforces frequency-domain sparsity to suppress blur artifacts and preserve fine details across challenging image restoration settings.
                   </p>
               </td>
           </tr>
@@ -281,13 +454,24 @@ document.addEventListener('DOMContentLoaded', function() {
             </tr>
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            
-           
             <tr>
-              
               <td style="padding:25px;width:80%;vertical-align:middle">
-                <a href="https://arxiv.org/abs/2406.08344" style="color:black">One paper accepted at WACV 2025 🔥</a>
-               
+                <a href="https://arxiv.org/abs/2605.19728" style="color:black">Aero-World released on arXiv, May 2026</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:25px;width:80%;vertical-align:middle">
+                <a href="https://arxiv.org/abs/2605.09223" style="color:black">CREST released on arXiv, May 2026</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:25px;width:80%;vertical-align:middle">
+                <a href="https://arxiv.org/abs/2511.10806" style="color:black">Vision Transformer + FFT-ReLU paper appeared at ICAART 2026</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:25px;width:80%;vertical-align:middle">
+                <a href="https://arxiv.org/abs/2406.08344" style="color:black">Blind Image Deblurring with FFT-ReLU Sparsity Prior accepted at WACV 2025</a>
               </td>
             </tr>
             </tbody></table>
@@ -301,8 +485,18 @@ document.addEventListener('DOMContentLoaded', function() {
             </tr>
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            
-           
+            <tr>
+              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
+                <div class="colored-box">
+                  <img src="data/ucf.png" alt="University of Central Florida" style="width:100%">
+                </div>
+              </td>
+              <td style="padding:8px;width:80%;vertical-align:middle">
+                <p> <b>Graduate Research Assistant</b>, <a href="https://www.ucf.edu/">University of Central Florida</a><br> Fall 2025 - Present<br> Advised by <a href="https://yutianyt.com/">Dr. Yu Tian</a> and <a href="https://graduate.ucf.edu/profile/mubarak-shah">Dr. Mubarak Shah</a></p>
+
+              </td>
+            </tr>
+
             <tr>
               <td align="center" style="padding:16px;width:20%;vertical-align:middle">
 						     <div class="colored-box">
@@ -322,7 +516,7 @@ document.addEventListener('DOMContentLoaded', function() {
 								 </div>
               </td>
               <td style="padding:8px;width:80%;vertical-align:middle">
-                <p> <b>Research Assistant</b>, <a href="https://cognistorm.ai/">Cognitive Agents and Interaction Lab</a>, University of Dhaka<br> Jan 2024 - Present<br> Advised by <a href="https://mmkhansajeeb.com/">Dr. Md Mosaddek Khan</a></p>
+                <p> <b>Research Assistant</b>, <a href="https://cognistorm.ai/">Cognitive Agents and Interaction Lab</a>, University of Dhaka<br> Jan 2024 - Aug 2025<br> Advised by <a href="https://mmkhansajeeb.com/">Dr. Md Mosaddek Khan</a></p>
 
               </td>
             </tr>

@@ -134,6 +134,12 @@ span.highlight {
   background-color: #ffffd0;
 }
 
+.github-stat {
+    color: #666;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
 .colored-box {
     color: black;
     padding: 20px;
@@ -163,10 +169,13 @@ a {
 }
 
 .bal-container {
+    --slider-position: 50%;
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    cursor: ew-resize;
+    touch-action: none;
 }
 
 .sal-container {
@@ -194,6 +203,12 @@ a {
 
 .bal-before {
     z-index: 10;
+}
+
+.bal-container .bal-before {
+    clip-path: inset(0 calc(100% - var(--slider-position)) 0 0);
+    overflow: hidden;
+    will-change: clip-path;
 }
 
 .bal-before-inset {
@@ -231,6 +246,7 @@ a {
     position: absolute;
     height: 32px;
     width: 32px;
+    left: var(--slider-position);
     top: 50%;
     margin-top: -16px;
     margin-left: -16px;
@@ -240,6 +256,11 @@ a {
     z-index: 20;
     cursor: ew-resize;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.bal-handle:focus-visible {
+    outline: 2px solid #f09228;
+    outline-offset: 3px;
 }
 
 .bal-handle::before,

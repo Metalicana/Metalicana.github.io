@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 315" role="img" aria-labelledby="title desc">
+  <title id="title">CREST long-video frame sampling thumbnail</title>
+  <desc id="desc">A stylized video timeline with selected frames and a relevance curvature curve.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#14532d"/>
+    </linearGradient>
+    <linearGradient id="curve" x1="70" y1="0" x2="350" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="0.55" stop-color="#facc15"/>
+      <stop offset="1" stop-color="#fb7185"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="315" fill="url(#bg)"/>
+  <rect x="34" y="34" width="352" height="247" rx="18" fill="#020617" opacity="0.64"/>
+  <text x="54" y="72" fill="#f8fafc" font-family="Lato, Arial, sans-serif" font-size="34" font-weight="700">CREST</text>
+  <text x="55" y="99" fill="#cbd5e1" font-family="Lato, Arial, sans-serif" font-size="15">event-centric long-video sampling</text>
+  <g fill="none" stroke="#64748b" stroke-width="2" opacity="0.65">
+    <line x1="58" y1="134" x2="362" y2="134"/>
+    <line x1="58" y1="193" x2="362" y2="193"/>
+    <line x1="58" y1="252" x2="362" y2="252"/>
+  </g>
+  <path d="M61 236 C91 219 94 161 124 159 C151 157 157 221 184 220 C213 219 217 111 249 113 C278 115 286 171 311 165 C337 159 341 123 360 104" fill="none" stroke="url(#curve)" stroke-width="7" stroke-linecap="round"/>
+  <g>
+    <rect x="69" y="166" width="44" height="52" rx="5" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+    <rect x="120" y="166" width="44" height="52" rx="5" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+    <rect x="171" y="166" width="44" height="52" rx="5" fill="#1e293b" stroke="#facc15" stroke-width="3"/>
+    <rect x="222" y="166" width="44" height="52" rx="5" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+    <rect x="273" y="166" width="44" height="52" rx="5" fill="#1e293b" stroke="#fb7185" stroke-width="3"/>
+    <rect x="324" y="166" width="28" height="52" rx="5" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+  </g>
+  <g fill="#94a3b8" font-family="Lato, Arial, sans-serif" font-size="12">
+    <text x="76" y="240">selected</text>
+    <text x="177" y="240">salient</text>
+    <text x="279" y="240">event</text>
+  </g>
+</svg>
