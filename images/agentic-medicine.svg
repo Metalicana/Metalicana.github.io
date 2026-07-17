@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-labelledby="title desc">
+  <title id="title">Agentic AI systems in medicine</title>
+  <desc id="desc">A medical cross connected to an AI agent network</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef8ff"/>
+      <stop offset="1" stop-color="#e8f8f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="22" fill="url(#bg)"/>
+  <g stroke="#77a9b9" stroke-width="5" opacity=".75">
+    <path d="M155 115 255 175M155 285l100-60M445 115l-100 60M445 285l-100-60"/>
+    <path d="M155 115v170M445 115v170"/>
+  </g>
+  <g fill="#fff" stroke="#237c91" stroke-width="6">
+    <circle cx="150" cy="110" r="34"/>
+    <circle cx="150" cy="290" r="34"/>
+    <circle cx="450" cy="110" r="34"/>
+    <circle cx="450" cy="290" r="34"/>
+  </g>
+  <circle cx="300" cy="200" r="105" fill="#fff" stroke="#176c80" stroke-width="8"/>
+  <path d="M278 128h44v50h50v44h-50v50h-44v-50h-50v-44h50z" fill="#e9535c"/>
+  <g fill="#237c91">
+    <circle cx="150" cy="110" r="10"/><circle cx="150" cy="290" r="10"/>
+    <circle cx="450" cy="110" r="10"/><circle cx="450" cy="290" r="10"/>
+  </g>
+  <text x="300" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#174f60">AGENTIC AI IN MEDICINE</text>
+</svg>
