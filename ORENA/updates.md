@@ -52,3 +52,86 @@ Local exact-match proxy evaluation on 1,976 labeled FRAME test questions. These 
 | Routed high-resolution LoRA | Qwen3-VL-8B | **1,380** | **1,976** | **69.8%** | Best general FRAME result. |
 | KB and capability balancing | Qwen3-VL-8B | 1,379 | 1,976 | 69.8% | Improved attribute reasoning but remained flat overall. |
 | RAG and soft balancing | Qwen3-VL-8B | 1,356 | 1,976 | 68.6% | Helped anatomy questions but reduced performance on common visual tasks. |
+
+### PROCEDURE question routing
+
+The PROCEDURE questions were divided into six evidence categories:
+
+1. Direct local visual anchors
+2. Event timestamp localization
+3. Anchor plus future-instance search
+4. Broad-window visual aggregation
+5. Dense interval/statistical memory
+6. Sparse object-event timelines
+
+The central idea is to use a **deterministic question router** followed by a
+different frame-selection strategy for each category, instead of applying one
+fixed sampling method to every question.
+
+Both HeiCo and LapChole now use the same routing and analysis pipeline. Their
+combined PROCEDURE training set contains **4,873 questions**.
+
+### Frame-selection findings
+
+#### Direct local anchors
+
+These questions provide the relevant timestamp directly. The selected evidence
+is a small timestamp-centered set of frames. This route is considered solved
+from the frame-selection perspective, although final answer accuracy still
+depends on the VLM.
+
+#### Event timestamp localization
+
+Uniform sampling, CREST, F2C, and hybrid methods were compared using oracle
+event timestamps. F2C performed poorly for this category. The current winner is
+a strict 256-frame hybrid containing **25% uniform coverage and 75% CREST**.
+
+On a 30-question LapChole pilot, this method achieved:
+
+- Hit within 1 second: **24/30 (80%)**
+- Hit within 5 seconds: **30/30 (100%)**
+- Mean minimum distance: **1 second**
+- Exact frame budget: **256 frames for every question**
+
+#### Anchor plus future search
+
+BioMedCLIP image similarity was tested by comparing frames near the question's
+anchor timestamp with future frames. On a balanced 12-question retrieval pilot:
+
+- Image-similarity selection: **6/12 (50.0%)**
+- Matched uniform-future selection: **7/12 (58.3%)**
+
+The sample is too small for a strong conclusion, but pure image similarity has
+not shown an advantage over uniform future sampling. This category remains
+unresolved and may require a hybrid or explicit event-transition detector.
+
+#### Remaining categories
+
+Broad aggregation, dense statistical memory, and sparse event timelines still
+need dedicated comparisons. Uniform temporal coverage is currently the safe
+fallback for these routes.
+
+## Current system plan
+
+The current deterministic policy is:
+
+```text
+direct local anchor       -> timestamp-centered frames
+event localization       -> 25% uniform + 75% CREST
+anchor + future search   -> uniform future sampling (temporary baseline)
+broad aggregation        -> uniform coverage (temporary baseline)
+dense statistical memory -> uniform coverage (temporary baseline)
+sparse event timeline    -> uniform coverage (temporary baseline)
+```
+
+A 120-question routed pilot has been prepared across all six categories. The
+next experiment is to materialize the routed 256-frame inputs, fine-tune
+Qwen3-VL-8B on PROCEDURE questions, and evaluate the same deterministic routing
+policy on held-out PROCEDURE test questions.
+
+## Research objective
+
+The immediate objective is not only to improve final VQA accuracy. It is also
+to determine **which frame-selection mechanism is appropriate for each type of
+question** and to evaluate whether the selected frames cover the evidence that
+must be observed to answer correctly.
