@@ -96,7 +96,44 @@ First let's list out some of the prominent papers regarding the intersection of 
 
 
 ### Detailed Literature Understanding
-#### 1. VMem: Consistent Interactive Video Scene Generation with Surfel-Indexed View Memory
+#### 1 WORLDMEM: Long-term Consistent World Simulation with Memory
+- **Authors**: Xiao et al., NeurIPS 2025 Peking University
+The primary summary of this paper is:
+```long-term world simulation = conditional video diffusion+retrieved visual memory + pose-and-time-aware attention```
+
+Suppose we have generated a video with frames \{$x1, x2, ..., x_T$\}
+An ideal model would be represented as: $p(x_t | x_{1:t-1}, a_{1:t})$ where $a_{1:t}$ are the actions taken by the agent in the video.
+
+In practice a video world model can take a smaller set of the past. A naive solution is to use the immediate past frames as context. As much as the window can allow: $p_{\theta}(x_t| x_{t-W:t-1}, a_{1:t})$
+
+WorldMem proposes a retrieval-based memory mechanism. So this can be additional context for the next chunk generation.
+
+$$
+p_{\theta}(x_t|x_{t-W:t-1}, a_{1:t}, \mathcal{R}(\mathcal{B}_N, s_t))
+$$
+
+Here:
+- $\mathcal{B}_N$ is a memory bank of past frames and actions. Total N observations.
+- $s_t$ is the current state of the world at time t. (camera pose, time)
+- $\mathcal{R}$ is a retrieval function that retrieves relevant past frames and actions based on the current state.
+
+##### Notations
+- t: Video frame or physical timestamp
+- k: Diffusion noise level
+- $x_t^0$: Clean latent representation of frame t
+- $x_t^k$: Frame t corrupted to diffusion level k
+- $a_t$: Action taken at time t
+- $p_t$: Pose of the camera at time t
+- $\tau_t$: World timestamp stored in memory
+- $L_M$: Number of retrieved memory frames
+
+So, $x_{100}^{500}$ would mean video frame 100 at diffusion noise level 500
+
+##### The External Memory
+
+
+
+#### 2. VMem: Consistent Interactive Video Scene Generation with Surfel-Indexed View Memory
 - **Authors**: Li et al., ICCV 2025 Oxford Visual Geometry Group
 
 - **Summary**: VMem introduces a surfel-indexed view memory to maintain consistency in long video generation.
