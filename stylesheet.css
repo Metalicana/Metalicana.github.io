@@ -304,3 +304,59 @@ a {
     right: 50%;
     margin-right: -12px;
 }
+
+@media (max-width: 600px) {
+    /* Give each research image its own row instead of a narrow table column. */
+    .publications > tbody,
+    .publications > tbody > tr {
+        display: block;
+        width: 100%;
+    }
+
+    .publications > tbody > tr > td {
+        display: block;
+        box-sizing: border-box;
+        width: 100% !important;
+        padding: 16px !important;
+        overflow-wrap: anywhere;
+    }
+
+    .publications > tbody > tr > td + td {
+        padding-top: 0 !important;
+    }
+
+    .publications .comparison-wrapper {
+        max-width: 320px;
+        max-height: none;
+        margin: 0 auto;
+    }
+
+    /* Reserve space for logos and remove the nested desktop padding. */
+    .affiliations {
+        width: 100%;
+    }
+
+    .affiliations > tbody > tr > td:first-child {
+        box-sizing: border-box;
+        width: 96px !important;
+        min-width: 96px;
+        padding: 8px !important;
+    }
+
+    .affiliations > tbody > tr > td + td {
+        width: auto !important;
+        padding: 8px !important;
+        overflow-wrap: anywhere;
+    }
+
+    .affiliations .colored-box {
+        display: block;
+        width: 80px;
+        padding: 0;
+    }
+
+    .affiliations .colored-box img {
+        display: block;
+        height: auto;
+    }
+}
