@@ -1,28 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-labelledby="title desc">
-  <title id="title">Agentic AI systems in medicine</title>
-  <desc id="desc">A medical cross connected to an AI agent network</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#eef8ff"/>
-      <stop offset="1" stop-color="#e8f8f1"/>
-    </linearGradient>
-  </defs>
-  <rect width="600" height="400" rx="22" fill="url(#bg)"/>
-  <g stroke="#77a9b9" stroke-width="5" opacity=".75">
-    <path d="M155 115 255 175M155 285l100-60M445 115l-100 60M445 285l-100-60"/>
-    <path d="M155 115v170M445 115v170"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+  <title id="title">Agentic AI in medicine</title>
+  <desc id="desc">A medical AI agent connected to clinical tasks, external tools, medical knowledge, and human oversight: key dimensions of the review taxonomy.</desc>
+  <rect width="640" height="400" fill="#f1f6f6"/>
+  <g font-family="Arial, sans-serif">
+    <text x="36" y="52" font-size="28" font-weight="700" fill="#284f58">Agentic AI in medicine</text>
+    <text x="36" y="81" font-size="17" fill="#637e85">A systematic review &amp; taxonomy</text>
+    <g fill="none" stroke="#9cbec4" stroke-width="3"><path d="M175 166 267 223M465 166 373 223M175 313 267 257M465 313 373 257"/></g>
+    <g fill="#fff" stroke="#cfdee1" stroke-width="2"><rect x="36" y="122" width="204" height="82" rx="10"/><rect x="400" y="122" width="204" height="82" rx="10"/><rect x="36" y="274" width="204" height="82" rx="10"/><rect x="400" y="274" width="204" height="82" rx="10"/></g>
+    <g fill="#466872" font-size="19" text-anchor="middle"><text x="138" y="170">Clinical tasks</text><text x="502" y="170">Tool use</text><text x="138" y="322">Knowledge</text><text x="502" y="322">Human oversight</text></g>
+    <circle cx="320" cy="239" r="70" fill="#2c727e"/>
+    <path d="M311 194h18v19h19v18h-19v19h-18v-19h-19v-18h19z" fill="#fff"/>
+    <text x="320" y="278" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">AI agent</text>
   </g>
-  <g fill="#fff" stroke="#237c91" stroke-width="6">
-    <circle cx="150" cy="110" r="34"/>
-    <circle cx="150" cy="290" r="34"/>
-    <circle cx="450" cy="110" r="34"/>
-    <circle cx="450" cy="290" r="34"/>
-  </g>
-  <circle cx="300" cy="200" r="105" fill="#fff" stroke="#176c80" stroke-width="8"/>
-  <path d="M278 128h44v50h50v44h-50v50h-44v-50h-50v-44h50z" fill="#e9535c"/>
-  <g fill="#237c91">
-    <circle cx="150" cy="110" r="10"/><circle cx="150" cy="290" r="10"/>
-    <circle cx="450" cy="110" r="10"/><circle cx="450" cy="290" r="10"/>
-  </g>
-  <text x="300" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#174f60">AGENTIC AI IN MEDICINE</text>
 </svg>

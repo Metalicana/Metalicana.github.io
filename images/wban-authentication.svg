@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+  <title id="title">Wireless body area network authentication</title>
+  <desc id="desc">A simplified path from body sensors through a semi-trusted phone and hospital gateway to a clinician, with end-to-end authentication.</desc>
+  <rect width="640" height="400" fill="#f4f2ec"/>
+  <g font-family="Arial, sans-serif">
+    <text x="36" y="52" font-size="28" font-weight="700" fill="#413e33">Secure health networks</text>
+    <text x="36" y="81" font-size="17" fill="#77705b">From body sensors to clinical care</text>
+    <path d="M100 188H543" stroke="#b2a88b" stroke-width="3" stroke-dasharray="6 6"/>
+    <g fill="#fff" stroke="#c6bfae" stroke-width="2"><rect x="39" y="133" width="114" height="111" rx="12"/><rect x="187" y="133" width="114" height="111" rx="12"/><rect x="335" y="133" width="114" height="111" rx="12"/><rect x="483" y="133" width="114" height="111" rx="12"/></g>
+    <g fill="none" stroke="#837348" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="96" cy="163" r="11"/><path d="M96 175V211M72 188 96 179 120 188M96 211 81 229M96 211 111 229"/>
+      <rect x="226" y="155" width="36" height="65" rx="5"/><path d="M238 211h12"/>
+      <rect x="367" y="156" width="50" height="62" rx="4"/><path d="M377 171h29M377 185h29M377 199h15"/>
+      <circle cx="540" cy="167" r="13"/><path d="M515 216v-10c0-23 50-23 50 0v10M540 195v16M532 203h16"/>
+    </g>
+    <g text-anchor="middle" font-size="17" fill="#5f5948"><text x="96" y="274">Sensors</text><text x="244" y="274">Phone</text><text x="392" y="274">Gateway</text><text x="540" y="274">Clinician</text></g>
+    <text x="244" y="296" text-anchor="middle" font-size="13" fill="#877550">semi-trusted</text>
+    <path d="M96 307v34h444v-34" fill="none" stroke="#837348" stroke-width="2"/>
+    <rect x="178" y="325" width="284" height="33" rx="5" fill="#f4f2ec"/>
+    <text x="320" y="347" text-anchor="middle" font-size="17" fill="#675731">End-to-end authentication</text>
+  </g>
+</svg>
