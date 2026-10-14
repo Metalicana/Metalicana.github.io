@@ -1,0 +1,76 @@
+[
+  {
+    "file": "keepsake-figure.png",
+    "source_url": "https://arxiv.org/html/2610.06588v1/ICLR2027_Method_new.png",
+    "source_page": "https://arxiv.org/html/2610.06588v1#S3.F2",
+    "figure": "Figure 2 · Method overview",
+    "downloaded": "2026-10-13",
+    "sha256": "c699c0f9681821e6b8114ad2767e3299a37a4eec45806c59400bb3b05d96c09a",
+    "modifications": "None; original downloaded image."
+  },
+  {
+    "file": "aero-world-figure.png",
+    "source_url": "https://arxiv.org/html/2605.19728v1/Main_Architecture.png",
+    "source_page": "https://arxiv.org/html/2605.19728v1#S2.F2",
+    "figure": "Figure 2 · Architecture",
+    "downloaded": "2026-10-13",
+    "sha256": "024281075f5f102fda450ca318dfcc18cb680b368cdd788b876de710d75c1ed3",
+    "modifications": "None; original downloaded image."
+  },
+  {
+    "file": "crest-figure.png",
+    "source_url": "https://arxiv.org/html/2605.09223v3/selection_algorithm.png",
+    "source_page": "https://arxiv.org/html/2605.09223v3#S2.F3",
+    "figure": "Figure 3 · Selection process",
+    "downloaded": "2026-10-13",
+    "sha256": "825adb25b2626b0682de827fcb391f87e73662568bba44e3e4ab14c6960d01d3",
+    "modifications": "None; original downloaded image."
+  },
+  {
+    "file": "slomodeblur-figure.png",
+    "source_url": "https://arxiv.org/html/2506.19445v5/SLoMoDeblur.png",
+    "source_page": "https://arxiv.org/html/2506.19445v5#S3.F2",
+    "figure": "Figure 2 · Dataset construction",
+    "downloaded": "2026-10-13",
+    "sha256": "722440e23b3124cbcef99512d7b6e9c0208c4d351e9b9b15f87c877db132aee9",
+    "modifications": "None; original downloaded image."
+  },
+  {
+    "file": "attention-frequency-figure.png",
+    "source_url": "https://arxiv.org/html/2511.10806v1/Fig1.png",
+    "source_page": "https://arxiv.org/html/2511.10806v1#S2.F1",
+    "figure": "Figure 1 · Architecture",
+    "downloaded": "2026-10-13",
+    "sha256": "21f1b2facca7197ed0d8669319ca292ee4f97664c692b2088ecf9a06aeb512de",
+    "modifications": "None; original downloaded image."
+  },
+  {
+    "file": "agentic-medicine-figure.jpg",
+    "source_url": "https://yutianyt.com/assets/img/publication_preview/agent_survey.jpg",
+    "source_page": "https://yutianyt.com/publications/",
+    "figure": "Survey overview",
+    "downloaded": "2026-10-13",
+    "sha256": "91324bb4eb1f283b6e8707abe5cb9266027c301bd25bdf8381e62e8b0aa45be5",
+    "modifications": "None; original downloaded image.",
+    "note": "The TechRxiv PDF download was unavailable. This original survey overview is hosted alongside the same paper on coauthor Yu Tian’s publication page."
+  },
+  {
+    "file": "fft-relu-figure.jpg",
+    "source_url": "https://arxiv.org/html/2406.08344v3/images/image_bands/chinese_temple.jpg",
+    "source_page": "https://arxiv.org/html/2406.08344v3#S1.F1",
+    "figure": "Figure 1 · Deblurring results",
+    "downloaded": "2026-10-13",
+    "sha256": "0d45ac3d3f7cce59e4af85d2e1e21bc64145394c382722b96e5117f8ae9efd10",
+    "modifications": "None; original downloaded image.",
+    "note": "This optimization-based paper has no architecture diagram; Figure 1 is its published results overview."
+  },
+  {
+    "file": "wban-figure.png",
+    "source_url": "https://arxiv.org/html/2111.06158v1/figure1.png",
+    "source_page": "https://arxiv.org/html/2111.06158v1#S3.F1",
+    "figure": "Figure 1 · System model",
+    "downloaded": "2026-10-13",
+    "sha256": "8f73d778b960b4301c3d677c1c5b33c8c0e48d6879cf1a9853b37c6b126b6f3d",
+    "modifications": "None; original downloaded image."
+  }
+]
