@@ -7,8 +7,8 @@
   <meta name="description" content="Abdul Mohaimen Al Radi is a PhD student at UCF researching long-horizon video generation, spatial memory, image restoration, and AI agents in medicine.">
   <title>Abdul Mohaimen Al Radi</title>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="stylesheet.css">
-  <script src="site.js" defer></script>
+  <link rel="stylesheet" href="stylesheet.css?v=20261014-3">
+  <script src="site.js?v=20261014-3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -121,10 +121,14 @@
             </div>
           </article>
           <article class="publication is-highlighted" id="fft-relu">
-            <a class="paper-preview preview-fft-relu" href="images/papers/fft-relu-figure.jpg" aria-label="View figure 1 · deblurring results for fft-relu at full resolution">
-              <img src="images/papers/fft-relu-figure.jpg" alt="Figure 1 from the FFT-ReLU paper: the input blurry image followed by five deblurring results, with the proposed method at the right." width="5882" height="966" loading="lazy">
-              <span class="preview-caption">Figure 1 · Deblurring results <span aria-hidden="true">↗</span></span>
-            </a>
+            <div class="paper-preview">
+              <div class="bal-container">
+                <div class="bal-after"><img src="images/Sharp.png" alt="Restored sharp image" width="502" height="351" loading="lazy"><span class="afterLabel">Sharp</span></div>
+                <div class="bal-before"><img src="images/Blurry.png" alt="Original blurry image" width="502" height="351" loading="lazy"><span class="beforeLabel">Blurry</span></div>
+                <div class="bal-handle" role="slider" tabindex="0" aria-label="Compare blurry and sharp image" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span aria-hidden="true">↔</span></div>
+              </div>
+              <span class="preview-caption">Drag or use arrow keys to compare</span>
+            </div>
             <div class="paper-copy">
               <p class="paper-venue">WACV · 2025</p>
               <h3><a href="https://github.com/Metalicana/Blind-Image-Deblurring-with-FFT-ReLU-Sparsity-Prior">Blind Image Deblurring with FFT-ReLU Sparsity Prior</a></h3>
